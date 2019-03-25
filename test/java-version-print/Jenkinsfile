@@ -16,7 +16,7 @@ pipeline {
                  sh 'java -version'
              }
          }
-        stage('say goodbye) {
+        stage('say goodbye') {
             steps {
                 echo 'Goodbye World'
             }
