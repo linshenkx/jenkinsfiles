@@ -1,8 +1,20 @@
-node {
-    /* Requires the Docker Pipeline plugin to be installed */
-    docker.image('java:8').inside {
-        stage('Test') {
-            sh 'java --version'
+pipeline {
+    agent {
+            docker { image 'java:8' }
         }
+    triggers {
+        pollSCM('H/3 * * * *')
+    }
+    stages {
+        stage('say hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('print java version') {
+             steps {
+                 sh 'java -version'
+             }
+         }
     }
 }
