@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+            docker { image 'java:7' }
+        }
+    triggers {
+        pollSCM('H/3 * * * *')
+    }
+    stages {
+        stage('say hello') {
+            steps {
+                echo 'Hello World-from java7'
+            }
+        }
+        stage('print java version') {
+             steps {
+                 sh 'java -version'
+             }
+         }
+        stage('say goodbye') {
+            steps {
+                echo 'Goodbye World-from java7'
+            }
+        }
+    }
+}
